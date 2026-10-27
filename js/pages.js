@@ -138,9 +138,9 @@ const DN=[['d:dash','Dashboard','home'],['d:bookings','My Bookings','cal'],['d:f
 const DT={'d:dash':['Dashboard',()=>`Welcome back, ${S.user.name.split(' ')[0]}`],'d:bookings':['My Bookings',()=>'Track and manage your property bookings'],'d:favorites':['Favorites',()=>`${S.favs.size} saved homes`],'d:profile':['Profile',()=>'Keep your details up to date'],'d:messages':['Messages',()=>'Chat with property managers and support'],'d:settings':['Settings',()=>'Notifications and preferences']};
 function dashShell(inner){
   const r=S.route.name,[t,s]=DT[r];
-  return `<div class="dash"><aside class="side"><a class="brand" data-go="home" aria-label="Home Nest home">${LOGO(true)}<span class="tl"><b>Home Nest</b><small>Find Your Perfect Space</small></span></a>
-   <nav class="snav" aria-label="Dashboard"><i class="pill"></i>${DN.map(([k,n,i])=>`<a data-go="${k}" class="${r===k?'on':''}">${ic(i)}${n}</a>`).join('')}</nav>
-   <div class="sfoot"><a data-go="properties">${ic('search')}<span>Browse properties</span></a><button data-act="logout">${ic('out')}<span>Log out</span></button></div></aside>
+  return `<div class="dash"><aside class="side"><div class="side-head"><a class="brand" data-go="home" aria-label="Home Nest home">${LOGO(true)}<span class="tl"><b>Home Nest</b><small>Find Your Perfect Space</small></span></a><button class="dash-menu" data-act="dashboard-menu" aria-label="Open dashboard menu" aria-controls="dash-menu" aria-expanded="false">${ic('menu')}</button></div>
+   <div class="side-menu" id="dash-menu"><nav class="snav" aria-label="Dashboard"><i class="pill"></i>${DN.map(([k,n,i])=>`<a data-go="${k}" class="${r===k?'on':''}" ${r===k?'aria-current="page"':''}>${ic(i)}${n}</a>`).join('')}</nav>
+   <div class="sfoot"><a data-go="properties">${ic('search')}<span>Browse properties</span></a><button data-act="logout">${ic('out')}<span>Log out</span></button></div></div></aside>
    <main class="dmain"><div class="dhead rv"><div><h1>${t}</h1><p>${s()}</p></div><div class="r"><button class="iconbtn" data-go="d:favorites" aria-label="Favorites">${ic('heart')}${S.favs.size?`<b class="badge">${S.favs.size}</b>`:''}</button><button class="avatar" data-go="d:profile" aria-label="Profile" style="width:52px;height:52px">${initials(S.user.name)}</button></div></div>${inner}</main></div>`;
 }
 function bkCard(b,i){

@@ -102,10 +102,19 @@ document.addEventListener('click',e=>{
       menu.setAttribute('aria-label','Menu');
       menu.innerHTML=ic('menu');
     }
-    go(d.go,d.id?{id:+d.id}:{});return}
+    const side=$('.side'),dashMenu=$('.dash-menu');
+    if(side)side.classList.remove('open');
+    if(dashMenu){dashMenu.setAttribute('aria-expanded','false');dashMenu.setAttribute('aria-label','Open dashboard menu');dashMenu.innerHTML=ic('menu')}
+    go(d.go,d.id?{id:+d.id}:{ });return}
   const a=e.target.closest('[data-act]');if(!a)return;const act=a.dataset.act;
   const bk=()=>S.bookings.find(b=>b.id===a.dataset.b);
   switch(act){
+   case 'dashboard-menu':{
+    const side=$('.side'),open=side.classList.toggle('open');
+    a.setAttribute('aria-expanded',String(open));
+    a.setAttribute('aria-label',open?'Close dashboard menu':'Open dashboard menu');
+    a.innerHTML=ic(open?'x':'menu');break;
+   }
    case 'menu':{
     const links=$('#links'),open=links.classList.toggle('open');
     a.setAttribute('aria-expanded',String(open));
@@ -152,7 +161,14 @@ document.addEventListener('click',e=>{
    case 'saveprefs':toast('Preferences saved');break;
   }
 });
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();if((e.key==='Enter')&&e.target.matches('.pcard,.cat'))e.target.click()});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    closeModal();
+    const side=$('.side'),menu=$('.dash-menu');
+    if(side&&menu){side.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Open dashboard menu');menu.innerHTML=ic('menu')}
+  }
+  if((e.key==='Enter')&&e.target.matches('.pcard,.cat'))e.target.click()
+});
 $('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});
 document.addEventListener('change',e=>{
   const t=e.target;
