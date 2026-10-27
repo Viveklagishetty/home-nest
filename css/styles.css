@@ -447,14 +447,15 @@ svg.i.f{fill:currentColor;stroke:none}
 @media (max-width:980px){
   .dash{grid-template-columns:1fr}
   .side{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;height:auto;border-radius:0;padding:12px max(16px,env(safe-area-inset-right,0px)) 12px max(16px,env(safe-area-inset-left,0px));gap:0;overflow:visible;box-shadow:0 8px 24px -16px rgba(11,45,94,.7)}
-  .side-head{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:12px}
-  .side .brand{padding-left:0}
+  .side-head{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:12px;min-width:0;width:100%}
+  .side .brand{min-width:0;padding-left:0}
+  .side .brand .tl{min-width:0}
   .side .brand .tl{display:grid}
   .dash-menu{width:44px;height:44px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.28);border-radius:13px;color:#fff;background:rgba(255,255,255,.1)}
   .dash-menu svg{width:24px;height:24px}
   .dash-menu:hover,.side.open .dash-menu{background:rgba(255,255,255,.2)}
-  .side-menu{display:block;max-height:0;flex:none;overflow:hidden;opacity:0;transition:max-height .35s var(--ease),opacity .2s ease}
-  .side.open .side-menu{max-height:520px;opacity:1}
+  .side-menu{display:block;max-height:0;flex:none;overflow:hidden;visibility:hidden;opacity:0;transition:max-height .35s var(--ease),opacity .2s ease,visibility 0s linear .35s}
+  .side.open .side-menu{max-height:520px;visibility:visible;opacity:1;transition-delay:0s}
   .snav{display:grid;gap:4px}
   .snav .pill{display:none}
   .snav a{height:48px;font-size:15px;padding:0 14px;white-space:nowrap}
