@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Home Nest</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Manrope:wght@400..800&display=swap">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div id="sp"></div>
+
+<!-- Loader shown while the app starts -->
+<div id="loader" aria-label="Loading Home Nest">
+  <div class="ld-dots"><i style="left:12%;top:70%"></i><i style="left:82%;top:24%;animation-delay:-2s"></i><i style="left:66%;top:78%;animation-delay:-4s"></i><i style="left:24%;top:20%;animation-delay:-1s"></i></div>
+  <div class="ld-box">
+    <svg class="ld-house" viewBox="0 0 120 120" aria-hidden="true"><path d="M14 58 60 18l46 40"/><path d="M26 52v50h68V52"/><path class="d2" d="M50 102V74h20v28"/></svg>
+    <img class="logo white ld-logo" id="ldlogo" alt="Stackly">
+    <div class="ld-bar"><i id="ldbar"></i></div>
+    <div class="ld-pct" id="ldpct">0%</div>
+    <p>HOME NEST · FIND YOUR PERFECT SPACE</p>
+  </div>
+</div>
+
+<!-- Every page is rendered into #app by js/pages.js -->
+<div id="app"></div>
+<div id="modal" role="dialog" aria-modal="true"></div>
+<div id="toasts" aria-live="polite"></div>
+
+<!-- Scripts share globals, so the order matters -->
+<script src="js/images.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/icons.js"></script>
+<script src="js/data.js"></script>
+<script src="js/helpers.js"></script>
+<script src="js/pages.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
